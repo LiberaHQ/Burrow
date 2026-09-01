@@ -1,0 +1,16 @@
+packages:
+  - "apps/*"
+  - "!apps/mobile"
+allowBuilds:
+  '@abandonware/noble': true
+  # Linux-only native deps of noble (BLE central role) — bluetooth-hci-socket
+  # needs a real Linux target to build correctly at all, which is exactly
+  # why this only ever shows up on a fresh Ubuntu clone, not on macOS.
+  '@abandonware/bluetooth-hci-socket': true
+  usb: true
+  electron: true
+  esbuild: true
+  unrs-resolver: true
+ignoredBuiltDependencies:
+  - sharp
+  - unrs-resolver

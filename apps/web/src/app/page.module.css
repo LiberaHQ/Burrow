@@ -1,0 +1,48 @@
+.shell {
+  display: flex;
+  height: 100vh;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.topBar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.75rem 1.5rem 0;
+}
+
+.statusOk,
+.statusWarn,
+.statusOff {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  cursor: default;
+  transition: box-shadow var(--duration-base) var(--ease);
+}
+
+.statusOk {
+  background: #14532d;
+  color: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.1);
+}
+
+.statusWarn {
+  background: #451a03;
+  color: #fbbf24;
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+.statusOff {
+  background: #27272a;
+  color: #71717a;
+}

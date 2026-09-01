@@ -1,0 +1,157 @@
+.sidebar {
+  width: 224px;
+  min-width: 224px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.25rem 1.1rem 1rem;
+}
+
+.brand svg {
+  border-radius: 8px;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.brandName {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 1rem 0.6rem;
+}
+
+.nav {
+  list-style: none;
+  padding: 0 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.navButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.87rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background var(--duration-fast) var(--ease),
+    color var(--duration-fast) var(--ease);
+}
+
+.navButton:hover {
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--foreground);
+}
+
+.navButtonActive {
+  composes: navButton;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.navButtonActive:hover {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+/* A slim indicator bar reads as "current location" more clearly at a
+   glance than a background tint alone, especially at small sizes. */
+.navButtonActive::before {
+  content: "";
+  position: absolute;
+  left: -0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 1.1rem;
+  border-radius: 0 3px 3px 0;
+  background: var(--accent);
+}
+
+.iconSlot {
+  position: relative;
+  display: inline-flex;
+}
+
+.badge {
+  position: absolute;
+  top: -0.45rem;
+  right: -0.55rem;
+  min-width: 1.1rem;
+  height: 1.1rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1.1rem;
+  text-align: center;
+  box-shadow: var(--shadow-accent);
+}
+
+.identityCard {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.1rem;
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease);
+}
+
+.identityCard:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), #7c3aed);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.identityText {
+  min-width: 0;
+}
+
+.identityName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.identityHash {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}

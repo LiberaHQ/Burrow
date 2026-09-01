@@ -1,0 +1,3 @@
+#!/bin/bash
+cd "/Users/ramankarki/Developer/codes/ratspeak/apps/server" || exit 1
+exec "/Users/ramankarki/.nvm/versions/node/v20.19.5/bin/node" dist/index.js >> /tmp/burrow-server-wrapped.log 2>&1

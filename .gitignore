@@ -1,0 +1,24 @@
+node_modules/
+.next/
+dist/
+out/
+build/
+.DS_Store
+*.log
+*.tsbuildinfo
+.env
+.env.local
+release/
+# Compiled by apps/server/mac-peripheral/build.sh — platform-specific binary, not source.
+apps/server/mac-wrapper/BurrowPeripheral.app/Contents/MacOS/BurrowPeripheral
+
+# Custom Xcode derivedData paths used for on-device builds this session —
+# apps/mobile/.gitignore's generic "build/" doesn't match these names.
+apps/mobile/ios/buildDevice*/
+
+# Distributable binaries served by the download page — generated artifacts,
+# not source, and the macOS .dmg is close enough to GitHub's 100MB hard
+# limit that it doesn't belong in git history regardless.
+apps/site/public/downloads/*.dmg
+apps/site/public/downloads/*.apk
+apps/site/public/downloads/*.tar.gz

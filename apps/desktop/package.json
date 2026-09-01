@@ -1,0 +1,81 @@
+{
+  "name": "@burrow/desktop",
+  "version": "0.1.1",
+  "private": true,
+  "description": "Bluetooth-first chat, desktop edition",
+  "author": {
+    "name": "Burrow",
+    "email": "ramnkarki@gmail.com"
+  },
+  "homepage": "https://burrow.example",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "tsc -p tsconfig.json && electron dist/main.js",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "dist:linux": "electron-builder --linux deb --x64",
+    "dist:mac": "electron-builder --mac --arm64"
+  },
+  "dependencies": {
+    "@burrow/server": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.6.3"
+  },
+  "build": {
+    "appId": "dev.burrow.desktop",
+    "productName": "Burrow",
+    "directories": {
+      "output": "release"
+    },
+    "artifactName": "${productName}-${version}-${arch}.${ext}",
+    "asar": false,
+    "files": [
+      "dist/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "../web/out",
+        "to": "web"
+      }
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.social-networking",
+      "extendInfo": {
+        "NSBluetoothAlwaysUsageDescription": "Burrow scans for and connects to nearby Bluetooth LE peers to send and receive chat messages.",
+        "NSBluetoothPeripheralUsageDescription": "Burrow advertises itself over Bluetooth LE so other Burrow devices can find and chat with it."
+      }
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "category": "Network",
+      "executableName": "burrow"
+    },
+    "deb": {
+      "afterInstall": "linux-build/after-install.sh",
+      "afterRemove": "linux-build/after-remove.sh",
+      "maintainer": "Burrow <ramnkarki@gmail.com>",
+      "depends": [
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0",
+        "libcap2-bin"
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "burrow",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "concurrently -n server,web,desktop -c blue,green,magenta \"pnpm --filter @burrow/server dev\" \"pnpm --filter @burrow/web dev\" \"wait-on http://localhost:3000 http://localhost:4000/health && pnpm --filter @burrow/desktop dev\"",
+    "dev:web": "pnpm --filter @burrow/web dev",
+    "dev:server": "pnpm --filter @burrow/server dev",
+    "dev:desktop": "pnpm --filter @burrow/desktop dev",
+    "dev:site": "pnpm --filter @burrow/site dev",
+    "build": "pnpm --filter @burrow/web build && pnpm --filter @burrow/server build && pnpm --filter @burrow/desktop build",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.6.3",
+    "wait-on": "^8.0.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

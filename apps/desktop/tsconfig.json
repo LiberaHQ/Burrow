@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    // Node16 (not the legacy "CommonJS" setting) so that `await import(...)`
+    // for @burrow/server (an ESM-only package: "type": "module") is emitted
+    // as a real dynamic import — the legacy CommonJS module mode downlevels
+    // it to `require()`, which cannot load an ES module and crashes at
+    // runtime with ERR_REQUIRE_ESM. This package still has no "type" field
+    // in package.json, so its own .ts files still compile to plain CJS.
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "lib": ["ES2022"],
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"]
+}
