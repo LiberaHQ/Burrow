@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { BurrowLogo, CheckIcon } from "@/components/Icons";
 import { MeshArt } from "@/components/MeshArt";
 import { DownloadSection } from "@/components/DownloadSection";
+import { AppPreview, HowItWorks, AboutProject, PrivatePayments } from "@/components/home/HomeSections";
 import styles from "./page.module.css";
 
 // Scrolls to a section without letting the browser's default anchor
@@ -31,6 +33,12 @@ export default function Home() {
           <a className={styles.navLinkActive} href="#top" onClick={(e) => scrollToSection(e, "top")}>
             Home
           </a>
+          <Link className={styles.navLink} href="/docs">
+            Docs
+          </Link>
+          <Link className={styles.navLink} href="/tutorials">
+            Tutorials
+          </Link>
           <a className={styles.navLink} href="#download" onClick={(e) => scrollToSection(e, "download")}>
             Download
           </a>
@@ -75,9 +83,24 @@ export default function Home() {
         </div>
       </section>
 
+      <AppPreview />
+      <HowItWorks />
+      <PrivatePayments />
+      <AboutProject />
+
       <DownloadSection />
 
-      <footer className={styles.footer}>Burrow — built on Bluetooth LE, not the cloud.</footer>
+      <footer className={styles.footer}>
+        <span>Burrow — built on Bluetooth LE, not the cloud.</span>
+        <span className={styles.footerLinks}>
+          <a href="https://x.com/BurrowChat" target="_blank" rel="noreferrer">
+            X
+          </a>
+          <a href="https://github.com/LiberaHQ/Burrow" target="_blank" rel="noreferrer">
+            GitHub
+          </a>
+        </span>
+      </footer>
     </div>
   );
 }

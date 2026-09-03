@@ -29,6 +29,10 @@
 html {
   height: 100%;
   scroll-behavior: smooth;
+  /* Always reserve the scrollbar gutter so short pages (e.g. some docs
+     pages) don't render wider than scrolling ones, which would shift the
+     sticky header sideways on navigation. */
+  scrollbar-gutter: stable;
 }
 
 html,

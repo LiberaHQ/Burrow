@@ -1,6 +1,6 @@
 # Burrow (desktop)
 
-Bluetooth-first chat, desktop edition. A pnpm monorepo with three apps wired together:
+Bluetooth-first chat, desktop edition. A pnpm monorepo:
 
 - **`apps/server`** — Fastify backend. Owns the real Bluetooth radio via
   [`@abandonware/noble`](https://github.com/abandonware/noble) (BLE central/client role) and
@@ -8,6 +8,8 @@ Bluetooth-first chat, desktop edition. A pnpm monorepo with three apps wired tog
 - **`apps/web`** — Next.js UI (chat/peer list). Talks to the Fastify server over HTTP and `/ws`.
 - **`apps/desktop`** — Electron shell. Opens a window pointed at the Next.js dev server so the
   whole thing runs as an installable desktop app rather than "open a browser tab."
+- **`apps/site`** — Next.js marketing site, plus the docs and tutorials (`pnpm dev:site`, port
+  `:3100`). Standalone — not started by `pnpm dev`.
 - **`apps/mobile`** — React Native iOS app (not a pnpm workspace member — see its own README) that
   speaks the same BLE protocol, and unlike the desktop app supports the peripheral/advertising
   role too, so phones can be discovered and chatted with directly. See
@@ -28,7 +30,8 @@ pnpm dev
 
 `pnpm dev` runs all three apps concurrently: Fastify on `:4000`, Next.js on `:3000`, then waits
 for both to be up before launching the Electron window. You can also run pieces individually with
-`pnpm dev:server`, `pnpm dev:web`, `pnpm dev:desktop`.
+`pnpm dev:server`, `pnpm dev:web`, `pnpm dev:desktop`. The marketing/docs site is separate:
+`pnpm dev:site` (port `:3100`).
 
 Copy `apps/web/.env.local.example` to `apps/web/.env.local` if you need to point the UI at a
 non-default server URL.
@@ -50,9 +53,8 @@ firmware first.
 
 ## Mesh protocol layer (identity, encryption, offline delivery, relay)
 
-Sitting above the raw BLE transport (`apps/server/src/mesh/`), inspired by real
-[Ratspeak](https://github.com/ratspeak/Ratspeak)/Reticulum's design but scoped down to fold into this
-app rather than a full reimplementation:
+Sitting above the raw BLE transport (`apps/server/src/mesh/`), inspired by Reticulum's design but
+scoped down to fold into this app rather than a full reimplementation:
 
 - **Identity & end-to-end encryption**: each device generates a persistent NaCl keypair on first run
   (`~/.burrow/identity.json`), identified by a short hash of its public key. Right after a BLE
@@ -68,7 +70,7 @@ app rather than a full reimplementation:
   else, and its hop count (`ttl`, default 8) hasn't run out, it gets forwarded to your other connected
   peers as-is (still encrypted; a relay can't read it). This only works between identities that have
   *directly* handshaken with each other at some point — there's no announce/gossip propagation like
-  real Reticulum, so you can't message a total stranger through the mesh, only reach someone you've
+  Reticulum has, so you can't message a total stranger through the mesh, only reach someone you've
   met before but aren't currently adjacent to.
 
 The desktop UI shows this as a "secured (`<hash>`)" tag once a peer's handshake completes, and
@@ -192,7 +194,5 @@ Known rough edges:
 
 ## Why "Burrow"
 
-Formerly named after (and inspired by) the real [Ratspeak](https://github.com/ratspeak/Ratspeak)
-project — renamed to avoid confusion with that unrelated, much larger Rust/Reticulum-based mesh
-client. "Burrow" keeps the small-local-network spirit: a private, local mesh you and nearby peers
-share, discovered over Bluetooth range rather than the open internet.
+A burrow is a small, private tunnel network — which is the idea here: a private, local mesh you and
+nearby peers share, discovered over Bluetooth range rather than the open internet.
