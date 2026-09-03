@@ -41,10 +41,9 @@ that no amount of static analysis would have caught:
   entire mesh/encryption layer was non-functional on mobile from the start. Fixed by adding
   `react-native-get-random-values` and importing it as the very first line of `index.js` (must run
   before anything touches `nacl`).
-- The Xcode project itself was still internally named `RatspeakMobile` (folder, `.xcodeproj`,
-  target, scheme, bundle id) — a previously-disclosed gap from the Burrow rename that couldn't be
-  verified without Xcode. Now fully renamed to `BurrowMobile` / `dev.burrow.mobile`, verified by an
-  actual successful build.
+- The Xcode project was still internally carrying an old pre-Burrow name (folder, `.xcodeproj`,
+  target, scheme, bundle id) — a gap that couldn't be verified without Xcode. Now fully renamed to
+  `BurrowMobile` / `dev.burrow.mobile`, verified by an actual successful build.
 
 **Still not verified**: real Bluetooth behavior. The iOS Simulator has no Bluetooth radio at all —
 `centralState`/`peripheralState` correctly report "unsupported" there, and the app now surfaces that
