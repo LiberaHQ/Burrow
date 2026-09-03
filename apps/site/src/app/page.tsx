@@ -50,14 +50,13 @@ export default function Home() {
         <div className={styles.heroTop}>
           <div className={styles.heroText}>
             <h1 className={styles.headline}>
-              Chat off the grid.
+              Talk Freely.
               <br />
-              <span className={styles.headlineAccent}>No signal required.</span>
+              <span className={styles.headlineAccent}>Pay Privately.</span>
             </h1>
             <p className={styles.subtext}>
-              Burrow is an encrypted chat mesh that runs entirely over Bluetooth LE — no accounts, no
-              servers, no internet connection. Messages hop peer to peer until they reach who they&apos;re
-              addressed to.
+              A decentralized mesh network with privacy baked into the core — encrypted messaging and
+              a self-custodial wallet, with no accounts, no servers, and no one watching.
             </p>
             <div className={styles.ctaRow}>
               <a className={styles.primaryButton} href="#download" onClick={(e) => scrollToSection(e, "download")}>
